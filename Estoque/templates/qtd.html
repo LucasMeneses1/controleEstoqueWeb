@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-4">
+        <form method="POST" action="" class="border p-4" width="200" style="width: 42rem; color: white; background-color: #03989e">
+            {{ form_qtd.csrf_token }}
+            <legend>Adicionar Item</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_qtd.cod.label(class="form-control-label") }}
+                    {% if form_qtd.cod.errors %}
+                    {{ form_qtd.cod(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_qtd.cod.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_qtd.cod(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_qtd.lote.label(class="form-control-label") }}
+                    {% if form_qtd.lote.errors %}
+                    {{ form_qtd.lote(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_qtd.lote.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_qtd.lote(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_qtd.qtd.label(class="form-control-label") }}
+                    {% if form_qtd.qtd.errors %}
+                    {{ form_qtd.qtd(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_qtd.qtd.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_qtd.qtd(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="mt-4 ">
+                    {% for item in form_qtd.opcao %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ item.label }}</td>
+                    </tr>
+                    {% endfor %}
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_qtd.confirmar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

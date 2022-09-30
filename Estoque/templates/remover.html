@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-4">
+        <form method="POST" action="" class="border p-4" width="200" style="width: 42rem; color: white; background-color: #03989e">
+            {{ form_rem.csrf_token }}
+            <legend>Remover Item</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_rem.cod.label(class="form-control-label") }}
+                    {% if form_rem.cod.errors %}
+                    {{ form_rem.cod(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_rem.cod.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_rem.cod(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_rem.lote.label(class="form-control-label") }}
+                    {% if form_rem.lote.errors %}
+                    {{ form_rem.lote(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_rem.lote.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_rem.lote(class="form-control") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_rem.confirmar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

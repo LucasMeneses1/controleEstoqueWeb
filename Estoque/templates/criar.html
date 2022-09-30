@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-4">
+        <form method="POST" action="" class="border p-4" width="200" style="width: 42rem; color: white; background-color: #03989e">
+            {{ form_adc.csrf_token }}
+            <legend>Adicionar Item</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_adc.cod.label(class="form-control-label") }}
+                    {% if form_adc.cod.errors %}
+                    {{ form_adc.cod(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_adc.cod.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_adc.cod(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_adc.nome.label(class="form-control-label") }}
+                    {% if form_adc.nome.errors %}
+                    {{ form_adc.nome(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_adc.nome.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_adc.nome(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_adc.lote.label(class="form-control-label") }}
+                    {% if form_adc.lote.errors %}
+                    {{ form_adc.lote(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_adc.lote.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_adc.lote(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_adc.qtd.label(class="form-control-label") }}
+                    {% if form_adc.qtd.errors %}
+                    {{ form_adc.qtd(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_adc.qtd.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_adc.qtd(class="form-control") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_adc.confirmar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

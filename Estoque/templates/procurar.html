@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="d-flex justify-content-center mt-4">
+        <form method="POST" action="" class="border p-4" width="200" style="width: 42rem; color: white; background-color: #03989e">
+            {{ form_proc.csrf_token }}
+            <legend>Procurar Item</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_proc.cod.label(class="form-control-label") }}
+                    {% if form_proc.cod.errors %}
+                    {{ form_proc.cod(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_proc.cod.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_proc.cod(class="form-control") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_proc.confirmar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if i == 1 %}
+<div class="container mt-4" style="width: 700px">
+    <table class="table" style="color: #03989e">
+        <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Lote</th>
+            <th scope="col">Quantidade</th>
+        </tr>
+        </thead>
+        {% for produto in itens %}
+        <tbody>
+        <tr>
+            <td><a href="{{ url_for('editar_item', item_id=produto.id_item) }}" style="color: #03989e">{{
+        produto.cod_item }}</a></td>
+            <td>{{ produto.nome_item }}</td>
+            <td>{{ produto.lote_item }}</td>
+            <td>{{ produto.quantidade_item }}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="container-fluid border mt-5" style="width:1000px; height:250px; overflow: auto">
+    <h3 style="text-align: center; color: #03989e">Histórico de Edições</h3>
+    <hr>
+    <table class="table" style="color: #03989e">
+        <thead>
+        <tr>
+            <th scope="col">Id_registro</th>
+            <th scope="col">Data_edicao</th>
+            <th scope="col">Id_item</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Ação</th>
+            <th scope="col">Código_item</th>
+            <th scope="col">Código_item_ed</th>
+            <th scope="col">Nome_item</th>
+            <th scope="col">Nome_item_ed</th>
+            <th scope="col">Lote_item</th>
+            <th scope="col">Lote_item_ed</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Quantidade_item_ed</th>
+        </tr>
+        </thead>
+        {% for lista in historico %}
+            {% for registro in lista %}
+            <tbody>
+            <tr>
+                <td>{{ registro.id_registro }}</td>
+                <td>{{ registro.data_edicao }}</td>
+                <td>{{ registro.id_item }}</td>
+                <td>{{ registro.usuario }}</td>
+                <td>{{ registro.acao }}</td>
+                <td>{{ registro.cod_item }}</td>
+                <td>{{ registro.cod_item_ed }}</td>
+                <td>{{ registro.nome_item }}</td>
+                <td>{{ registro.nome_item_ed }}</td>
+                <td>{{ registro.lote_item }}</td>
+                <td>{{ registro.lote_item_ed }}</td>
+                <td>{{ registro.quantidade_item }}</td>
+                <td>{{ registro.quantidade_item_ed }}</td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        {% endfor %}
+    </table>
+</div>
+
+    {% endif %}
+{% endblock %}

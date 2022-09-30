@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de estoque - Smart Eletrônicos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='/icones/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='/icones/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='/icones/favicon-16x16.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/fontawesome/css/all.css') }}">
+</head>
+
+<body style="background-color: #FFFAFA">
+
+    <div class="container">
+        {% with mensagens = get_flashed_messages(with_categories=True) %}
+            {% if mensagens %}
+                {% for categoria, mensagem in mensagens %} <!-- categoria e mensagem são parametros enviados pelo flash -->
+                    <div class="alert {{ categoria }}">
+                        {{ mensagem }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+    {% block body %}
+    {% endblock %}
+
+
+<nav class="navbar navbar-dark fixed-bottom navbar-expand-lg justify-content-center" style="background-color: #03989e;">
+  <div class="navbar-brand">
+      <h5 style="text-align: center">Site desenvolvido apenas para fins didáticos</h5>
+      <h5 style="text-align: center">Login para testes -> usuario: usuário1 - senha: senha1</h5>
+      <h5 style="text-align: center">Github do desenvolvedor: <a href="https://github.com/LucasMeneses1" target="_blank" style="color: #ffffff">https://github.com/LucasMeneses1</a> </h5>
+  </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

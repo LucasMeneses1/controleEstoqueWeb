@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class=" position-relative container">
+
+    <div class="d-flex justify-content-center mt-4 text-white">
+        <div class="card mb-4 border-0 " style="width: 32rem; background-color: #03989e">
+          <img src="static/imagens/se_logo-1.png" class="card-img-top pt-2" alt="...">
+          <div class="card-body">
+            <h4 class="d-flex justify-content-center">Controle de Estoque - Faça seu login<br></h4>
+          </div>
+        </div>
+    </div>
+
+    <div class="text-white ms-auto me-auto" style="background-color: #03989e; width: 42rem; align-items: center">
+        <form method="POST" action="" class="border p-4" style="width: 42rem">
+            {{ form_login.csrf_token }}
+            <legend>Login</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_login.usuario.label(class="form-control-label") }}
+                    {{ form_login.usuario(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_login.senha.label(class="form-control-label") }}
+                    {{ form_login.senha(class="form-control") }}
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_login.logar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+    </div>
+
+</div>
+
+    {% endblock %}

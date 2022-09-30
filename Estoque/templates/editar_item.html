@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+<div class="container border mt-3">
+    <table class="table" style="color: #03989e">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Lote</th>
+        <th scope="col">Quantidade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ produto.id_item }}</td>
+        <td>{{ produto.cod_item }}</td>
+        <td>{{ produto.nome_item }}</td>
+        <td>{{ produto.lote_item }}</td>
+        <td>{{ produto.quantidade_item }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-3 text-white ms-auto me-auto" style="background-color: #03989e; width: 42rem">
+        <form method="POST" action="" class="border p-4" width="200" style="width: 42rem;">
+            {{ form_edt.csrf_token }}
+            <legend>Editar Item</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_edt.cod.label(class="form-control-label") }}
+                    {% if form_edt.cod.errors %}
+                      {{ form_edt.cod(class="form-control is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form_edt.cod.errors %}
+                          {{ error }}
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                        {{ form_edt.cod(class="form-control") }}
+                      {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_edt.nome.label(class="form-control-label") }}
+                    {% if form_edt.nome.errors %}
+                    {{ form_edt.nome(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_edt.nome.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_edt.nome(class="form-control") }}
+                    {% endif %}
+                </div>
+
+              <div class="form-group">
+                    {{ form_edt.lote.label(class="form-control-label") }}
+                    {% if form_edt.lote.errors %}
+                    {{ form_edt.lote(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form_edt.lote.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form_edt.lote(class="form-control") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-center">
+                {{ form_edt.confirmar(class="btn btn-light mt-2 me-5") }}
+                {{ form_edt.cancelar(class="btn btn-light mt-2") }}
+            </div>
+        </form>
+
+  </div>
+
+<div class="container-fluid border mt-5" style="width:1000px; height:250px; overflow: auto">
+    <h3 style="text-align: center; color: #03989e">Histórico de Edições</h3>
+    <hr>
+    <table class="table" style="color: #03989e">
+        <thead>
+        <tr>
+            <th scope="col">Id_registro</th>
+            <th scope="col">Data_edicao</th>
+            <th scope="col">Id_item</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Ação</th>
+            <th scope="col">Código_item</th>
+            <th scope="col">Código_item_ed</th>
+            <th scope="col">Nome_item</th>
+            <th scope="col">Nome_item_ed</th>
+            <th scope="col">Lote_item</th>
+            <th scope="col">Lote_item_ed</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Quantidade_item_ed</th>
+        </tr>
+        </thead>
+            {% for registro in historico %}
+            <tbody>
+            <tr>
+                <td>{{ registro.id_registro }}</td>
+                <td>{{ registro.data_edicao }}</td>
+                <td>{{ registro.id_item }}</td>
+                <td>{{ registro.usuario }}</td>
+                <td>{{ registro.acao }}</td>
+                <td>{{ registro.cod_item }}</td>
+                <td>{{ registro.cod_item_ed }}</td>
+                <td>{{ registro.nome_item }}</td>
+                <td>{{ registro.nome_item_ed }}</td>
+                <td>{{ registro.lote_item }}</td>
+                <td>{{ registro.lote_item_ed }}</td>
+                <td>{{ registro.quantidade_item }}</td>
+                <td>{{ registro.quantidade_item_ed }}</td>
+            </tr>
+            </tbody>
+            {% endfor %}
+
+{% endblock %}
+

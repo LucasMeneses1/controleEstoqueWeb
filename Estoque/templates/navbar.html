@@ -1,0 +1,17 @@
+<div class="container" >
+  <nav class="navbar navbar-expand-lg navbar-dark text-white" style="background-color: #03989e;" >
+    <div class="container-fluid">
+      <a class="navbar-brand ms-4" href="{{ url_for('inicio') }}">CONTROLE DE ESTOQUE - Smart Eletrônicos</a>
+        <div class="d-flex">
+          <div class="me-2">
+            {{ current_user.nome }}
+          </div>
+          <div class="me-5">
+            <a href="{{ url_for('sair') }}" class="text-white">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+  </nav>
+

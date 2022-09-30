@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'navbar.html' %}
+
+<div>
+<h1 class="mt-3" style="text-align: center; color: #03989e">Escolha uma opção</h1>
+<div class="d-grid gap-2 col-6 mx-auto mt-4" style="width: 350px">
+  <form><a href="{{ url_for('adc') }}"><button class="btn btn-primary mb-3 border-0" style="width: 350px; height: 50px; background-color: #03989e" type="button">Adicionar Novo Item</button></a>
+  <a href="{{ url_for('rem') }}"><button class="btn btn-primary mb-3 border-0" style="width: 350px; height: 50px; background-color: #03989e" type="button">Remover Item</button></a>
+  <a href="{{ url_for('qtd') }}"><button class="btn btn-primary mb-3 border-0" style="width: 350px; height: 50px; background-color: #03989e" type="button">Atualizar Quantidade</button></a>
+  <a href="{{ url_for('proc') }}"><button class="btn btn-primary mb-3 border-0" style="width: 350px; height: 50px; background-color: #03989e" type="button">Procurar Item</button></a>
+  </form>
+</div>
+
+<div class="container border mt-5" style="width:700px; height:300px; overflow: auto">
+  <h3 class="" style="text-align: center; color: #03989e">Produtos</h3>
+  <table class="table">
+    <thead>
+    <tr style="text-decoration: none; color: #03989e">
+      <th scope="col">Código</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Lote</th>
+      <th scope="col">Quantidade</th>
+    </tr>
+    </thead>
+    {% for produto in itens %}
+    <tbody>
+    <tr style="color: #03989e">
+      <td><a href="{{ url_for('editar_item', item_id=produto.id_item) }}" style="color: #03989e">{{
+        produto.cod_item }}</a></td>
+      <td>{{ produto.nome_item }}</td>
+      <td>{{ produto.lote_item }}</td>
+      <td>{{ produto.quantidade_item }}</td>
+    </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+</div>
+{% endblock %}
